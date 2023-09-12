@@ -16,7 +16,7 @@ public class InscripcionData {
         con = Conexion.getConexion();
     }
 
-    public void inscripcion(Inscripcion inscripcion) {
+    public void inscripcion(InscripcionClass inscripcion) {
 
         String sql = "INSERT INTO inscripcion( nota, idAlumno, idMateria)"
                 + " VALUES(?,?,?,?)";
@@ -25,8 +25,8 @@ public class InscripcionData {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             ps.setDouble(1, inscripcion.getNota());
-            ps.setInt(2, inscripcion.getIdAlumno());
-            ps.setDouble(3, inscripcion.getIdMateria());
+            ps.setInt(2, inscripcion.setAlumno(idAlumno));
+            ps.setInt(3, inscripcion.setMateria(idMateria ));
 
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
