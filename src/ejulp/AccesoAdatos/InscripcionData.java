@@ -63,4 +63,33 @@ public class InscripcionData {
         }
         return insc;
     }
+    public InscripcionClass obtenerInscriptoPorAlumno(int id) {
+        String sql = "SELECT idInscripcion, nota, idAlumno, idMateria FROM inscripcion WHERE estado= 1";
+        InscripcionClass inscripcion = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                inscripcion = new InscripcionClass();
+                inscripcion.setIdInscripcion(rs.getInt("idInscrpcion"));
+                inscripcion.setNota(0);
+                inscripcion.setAlumno(rs.getInt("idAlumno"));
+                inscripcion.setMateria(rs.getInt("idMateria"));
+               
+            } else {
+                JOptionPane.showMessageDialog(null, " no existe ese alumno  ");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " error al acceder a la tabla alumno ");
+        }
+        return inscripcion;
+
+    }
+
+    
+    
+    
 }
