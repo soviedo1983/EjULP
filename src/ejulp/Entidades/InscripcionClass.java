@@ -7,13 +7,13 @@ import ejulp.Entidades.Alumno;
 
 public class InscripcionClass {
     
-    private int inscripcion;
-    Alumno alumno ;
-    MateriaClass materia;
-    double nota ;
+    private int idInscripcion;
+    private Alumno alumno ;
+    private MateriaClass materia;
+    private double nota ;
 
-    public InscripcionClass(int inscripcion, Alumno alumno, MateriaClass materia, double nota) {
-        this.inscripcion = inscripcion;
+    public InscripcionClass(int idInscripcion, Alumno alumno, MateriaClass materia, double nota) {
+        this.idInscripcion = idInscripcion;
         this.alumno = alumno;
         this.materia = materia;
         this.nota = nota;
@@ -28,12 +28,12 @@ public class InscripcionClass {
     public InscripcionClass() {
     }
 
-    public int getInscripcion() {
-        return inscripcion;
+    public int getIdInscripcion() {
+        return idInscripcion;
     }
 
-    public void setInscripcion(int inscripcion) {
-        this.inscripcion = inscripcion;
+    public void setIdInscripcion(int idInscripcion) {
+        this.idInscripcion = idInscripcion;
     }
 
     public Alumno getAlumno() {
@@ -58,6 +58,12 @@ public class InscripcionClass {
 
     public void setNota(double nota) {
         this.nota = nota;
+    }
+
+    @Override
+    public String toString() {
+        String insc = idInscripcion +" "+alumno.getApellido()+", "+alumno.getNombre()+" "+materia.getNombre();
+        return insc;
     }
             
 }
