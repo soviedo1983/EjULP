@@ -60,6 +60,9 @@ public class InscripcionClass {
         this.nota = nota;
     }
 
+    
+    
+
     @Override
     public String toString() {
         String insc = idInscripcion +" "+alumno.getApellido()+", "+alumno.getNombre()+" "+materia.getNombre();
