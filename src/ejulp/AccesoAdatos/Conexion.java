@@ -5,7 +5,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public class Conexion {
     
     private static String url="jdbc:mariadb://localhost:3306/ulp";
