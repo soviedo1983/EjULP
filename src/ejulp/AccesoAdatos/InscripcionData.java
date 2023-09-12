@@ -1,6 +1,8 @@
 package ejulp.AccesoAdatos;
 
 import ejulp.Entidades.InscripcionClass;
+import ejulp.Entidades.MateriaClass;
+import ejulp.Vistas.Materia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -89,7 +91,45 @@ public class InscripcionData {
 
     }
 
+    public List<MateriaClass> obtenerMateriasCursadas(int id) {
+        List<MateriaClass> materias = new ArrayList<MateriaClass> ();
     
+        try {
     
-    
+          String sql = "SELECT inscripcion.idMateria,nombre,año FROM inscripcion "
+                  +"materia WHERE inscripcion.idMateria = materia.idMateria\n "
+                  +"AND inscripcion.idAlumno = ?;";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            MateriaClass materia ;
+            while(rs.next()) {
+                materia = new MateriaClass();
+                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setNombre(rs.getString("nombre"));
+                materia.setAnioMateria(rs.getInt("año"));
+                materia.setActivo(true);
+                materias.add(materia);
+             
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " error al acceder a la tabla alumno ");
+        }
+        return materias;
+
+            
+      
+}
+     public List<MateriaClass> obtenerMateriasNoCursadas(int id) {
+         
+     }
+     public void borrarInscripcionMateriaAlumno(int idAlumno,int idMateria) {
+         
+     }
+     public void actualizarNota(int idAlumno,int idMateria, double nota){
+{
+         
+     }
 }
