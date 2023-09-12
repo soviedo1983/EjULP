@@ -51,7 +51,9 @@ public class InscripcionData {
             while (rs.next()) {
                 InscripcionClass inscripcion = new InscripcionClass();
                inscripcion.setIdInscripcion(rs.getInt("idInscripcion"));
-
+               inscripcion.setNota(0);
+               inscripcion.setAlumno(rs.getInt("idAlumno"));
+               inscripcion.setMateria(rs.getInt("idMateria"));
                 insc.add(inscripcion);
             }
             ps.close();
@@ -59,6 +61,6 @@ public class InscripcionData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, " error al acceder a la tabla alumno ");
         }
-        return alum;
+        return insc;
     }
 }
