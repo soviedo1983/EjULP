@@ -34,5 +34,9 @@ public class Ejulp {
                        System.out.println(alumno.getFechaNac());      
     
        } */
+        
+        for(inscripcion insc:id.obtenerIncripto()){
+            
+        }
     }
 }
