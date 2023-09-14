@@ -26,7 +26,7 @@ public class Formulario extends javax.swing.JFrame {
         escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMfa = new javax.swing.JMenuItem();
+        llamada_FormularioAlumno = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -87,14 +87,19 @@ public class Formulario extends javax.swing.JFrame {
         );
 
         jMenu1.setText("Alumno");
-
-        jMfa.setText("Formulario de Alumno");
-        jMfa.addActionListener(new java.awt.event.ActionListener() {
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMfaActionPerformed(evt);
+                jMenu1ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMfa);
+
+        llamada_FormularioAlumno.setText("Formulario de Alumno");
+        llamada_FormularioAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                llamada_FormularioAlumnoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(llamada_FormularioAlumno);
 
         jMenuBar1.add(jMenu1);
 
@@ -145,14 +150,19 @@ public class Formulario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMfaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMfaActionPerformed
+    private void llamada_FormularioAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_llamada_FormularioAlumnoActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        formAlumno JMfa = new formAlumno();
-        escritorio.add(JMfa);
-        escritorio.moveToFront(jMfa);
+        formAlumno formAlumno_open = new formAlumno();
+        escritorio.add(formAlumno_open);
+        formAlumno_open.setVisible(true);
         
-    }//GEN-LAST:event_jMfaActionPerformed
+        
+    }//GEN-LAST:event_llamada_FormularioAlumnoActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,7 +214,7 @@ public class Formulario extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMfa;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem llamada_FormularioAlumno;
     // End of variables declaration//GEN-END:variables
 }
