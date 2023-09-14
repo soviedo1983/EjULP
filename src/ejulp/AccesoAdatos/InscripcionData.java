@@ -10,8 +10,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class InscripcionData {
@@ -48,7 +46,7 @@ public class InscripcionData {
     public List<InscripcionClass> obtenerInscripto() {
         ArrayList<InscripcionClass> insc = new ArrayList<>();
 
-        String sql = "SELECT *FROM inscripcion";
+        String sql = "SELECT * FROM inscripcion";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -73,7 +71,7 @@ public class InscripcionData {
     public List<InscripcionClass> obtenerInscriptoPorAlumno(int idAlumno) {
         ArrayList<InscripcionClass> insc = new ArrayList<>();
 
-        String sql = "SELECT *FROM inscripcion WHERE idAlumno = ? ";
+        String sql = "SELECT * FROM inscripcion WHERE idAlumno = ? ";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -132,7 +130,7 @@ public class InscripcionData {
 
         try {
 
-            String sql = "SELECT *FROM materia WHERE estado=1 AND idMateria not in "
+            String sql = "SELECT * FROM materia WHERE estado=1 AND idMateria not in "
                     + "(SELECT idMateria FEOM inscripcion where idAlumno = ?)";
 
             PreparedStatement ps = con.prepareStatement(sql);
