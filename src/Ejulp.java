@@ -14,12 +14,12 @@ public class Ejulp {
 
    
     public static void main(String[] args) {
-        // creo un objeto alumno para  insertar una alumno
-       Alumno juan = new Alumno (12569000,"Escalante"," Roxana ",LocalDate.of(1983, 02, 18),true);
-             AlumnoData alu = new AlumnoData();
-             // inserto esto a la base de datos **************************************
-                alu.guardarAlumno(juan);
-        //------silcita modificar el alumno desde el constructor ingreso el dato y solicito el metodo modificar 
+//        // creo un objeto alumno para  insertar una alumno
+//       Alumno juan = new Alumno (12569000,"Escalante"," Roxana ",LocalDate.of(1983, 02, 18),true);
+//             AlumnoData alu = new AlumnoData();
+//             // inserto esto a la base de datos **************************************
+//                alu.guardarAlumno(juan);
+//        //------silcita modificar el alumno desde el constructor ingreso el dato y solicito el metodo modificar 
                          // alu.modificarAlumno(juan);
        // solicita eliminar el alumno  con el id cambia su estado a 0*********************************************                  
                   //        alu.eliminarAlumno(1);
@@ -71,19 +71,23 @@ public class Ejulp {
 //     }
         */
         
+       
+       AlumnoData alu = new AlumnoData();
+       MateriaData mater=new MateriaData();
+       InscripcionData insc=new InscripcionData();
+       
+       Alumno jose=alu.buscarAlumno(2);
+       MateriaClass mat=mater.buscarMateria(5);
+       InscripcionClass ins=new InscripcionClass(jose,mat,9);
+
        //INSCRIPCION
-//       AlumnoData alu = new AlumnoData();
-//       MateriaData mater=new MateriaData();
-//       InscripcionData insc=new InscripcionData();
+      // insc.inscripcion(ins);
 //       
-//       Alumno jose=alu.buscarAlumno(2);
-//       MateriaClass mat=mater.buscarMateria(5);
-//       InscripcionClass ins=new InscripcionClass(jose,mat,9);
-//       insc.inscripcion(ins);
-//       
+       //ACTUALIZAR NOTA
+       //insc.actualizarNota(2, 5, 6);
        
-       
-       // for(inscripcion insc:id.obtenerIncripto()){
+       //BORRAR INSCRIPCION
+       insc.borrarInscripcionMateriaAlumno(2, 5);
             
         } 
 
