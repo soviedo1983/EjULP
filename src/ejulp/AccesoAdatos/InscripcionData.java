@@ -30,8 +30,8 @@ public class InscripcionData {
                 + " VALUES(?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setDouble(1,inscripcion.getNota());
-            ps.setInt(2,inscripcion.getAlumno().getIdAlumno());
+            ps.setDouble(1, inscripcion.getNota());
+            ps.setInt(2, inscripcion.getAlumno().getIdAlumno());
             ps.setInt(3, inscripcion.getMateria().getIdMateria());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
@@ -156,8 +156,6 @@ public class InscripcionData {
 
     }
 
-    
-
     public List<Alumno> obtenerAlumnosXMateria(int idMateria) {
         ArrayList<Alumno> alumnosMateria = new ArrayList<>();
         String sql = "SELECT a.idAlumno ,dni,nombre,apellido,fechaNacimiento,estado"
@@ -180,5 +178,47 @@ public class InscripcionData {
             JOptionPane.showMessageDialog(null, " error al acceder a la tabla  ");
         }
         return alumnosMateria;
+    }
+
+    public void actualizarNota(int idAlumno, int idMateria, double nota) {
+
+        String sql = "UPDATE inscripcion SET nota=? WHERE idAlumno=? AND idMateria=?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setDouble(1, nota);
+            ps.setInt(2, idAlumno);
+            ps.setInt(3, idMateria);
+
+            int fila = ps.executeUpdate();
+            if (fila > 0) {
+                JOptionPane.showMessageDialog(null, "Nota Actualizada");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inscripcion");
+        }
+
+    }
+
+    public void borrarInscripcionMateriaAlumno(int idAlumno, int idMateria) {
+
+        String sql = "DELETE FROM inscripcion WHERE idAlumno=? AND idMateria=?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idAlumno);
+            ps.setInt(2, idMateria);
+
+            int filas = ps.executeUpdate();
+            if (filas > 0) {
+                JOptionPane.showMessageDialog(null, "Inscripcion Eliminada");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inscripcion");
+        }
     }
 }
