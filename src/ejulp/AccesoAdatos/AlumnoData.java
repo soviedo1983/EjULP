@@ -14,9 +14,25 @@ import javax.swing.JOptionPane;
 public class AlumnoData {
 
     private Connection con = null;
+    
+    static boolean conexionExitosa;
 
     public AlumnoData() {
+        
         con = Conexion.getConexion();
+        
+        if(con != null){
+            
+            conexionExitosa = true;
+            
+        }
+    }
+    
+    
+   public static boolean conexionExitosa() {
+
+        return conexionExitosa;
+
     }
 
     public void guardarAlumno(Alumno alumno) {
@@ -35,7 +51,7 @@ public class AlumnoData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 alumno.setIdAlumno(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, " Alumno Agragado ");
+                JOptionPane.showMessageDialog(null, " ¡Alumno Agregado! ");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -45,16 +61,25 @@ public class AlumnoData {
     }
 
     public void modificarAlumno(Alumno alumno) {
-        String sql = " UPDATE alumno SET dni = ?,apellido = ?,nombre = ?,fechaNacimiento = ?,estado = ? WHERE idAlumno = ? ";
+        
+        boolean isactive = alumno.isActivo();
+        String convertir_estado = isactive ? "1" : "0";
+        
+        String sql = "UPDATE alumno SET dni = ?, apellido = ?, nombre = ? ,fechaNacimiento = ?, estado = ? WHERE idAlumno = ? ";
 
         try {
             PreparedStatement ps = null;
+            
             ps = con.prepareStatement(sql);
             ps.setInt(1, alumno.getDni());
             ps.setString(2, alumno.getApellido());
             ps.setString(3, alumno.getNombre());
             ps.setDate(4, Date.valueOf(alumno.getFechaNac()));
+            ps.setString(5, convertir_estado);
             ps.setInt(5, alumno.getIdAlumno());
+            
+            System.out.println(sql);
+            
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, " Alumno Modificado ");
@@ -62,7 +87,8 @@ public class AlumnoData {
                 JOptionPane.showMessageDialog(null, " Alumno no Existe ");
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " error al acceder a la tabla alumno ");
+            
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla alumno ");
         }
     }
 
@@ -157,6 +183,24 @@ public class AlumnoData {
             JOptionPane.showMessageDialog(null, " error al acceder a la tabla alumno ");
         }
         return alum;
+    }
+    
+    public boolean existeAlumno(int dni) {
+        boolean existe = false;
+        String sql = "SELECT COUNT(*) FROM alumno WHERE dni = ? AND estado = 1";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, dni);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                existe = (count > 0);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al verificar la existencia del alumno.");
+        }
+        return existe;
     }
 
 }

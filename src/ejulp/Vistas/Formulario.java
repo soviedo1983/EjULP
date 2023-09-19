@@ -1,8 +1,13 @@
 
 package ejulp.Vistas;
 
+<<<<<<< HEAD
+import ejulp.AccesoAdatos.AlumnoData;
+
+=======
 import ejulp.Vistas.formAlumno;
 import ejulp.Vistas.porMateria;
+>>>>>>> main
 public class Formulario extends javax.swing.JFrame {
      
     public Formulario() {
@@ -160,7 +165,20 @@ public class Formulario extends javax.swing.JFrame {
         escritorio.repaint();
         formAlumno formAlumno_open = new formAlumno();
         escritorio.add(formAlumno_open);
+<<<<<<< HEAD
+        
+        if(AlumnoData.conexionExitosa()){
+            
+          formAlumno_open.setVisible(true);
+            
+        }
+        
+        
+        
+        
+=======
         formAlumno_open.setVisible(true);
+>>>>>>> main
     }//GEN-LAST:event_llamada_FormularioAlumnoActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
